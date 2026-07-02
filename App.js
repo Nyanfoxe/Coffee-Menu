@@ -2,37 +2,30 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity, SafeAreaView, StatusBar } from 'react-native';
 
 export default function App() {
-  // 3. Changed the app title requirement
-  const appTitle = "The Cozy Grind Café"; 
+  const appTitle = "My Cafe Menu"; 
 
-  // Console-log simulation state for basic interaction
   const [consoleLog, setConsoleLog] = useState("— tap a button to see output");
 
-  // 2. Array of objects (Data source)
-  // Modified by adding 1 new category (Pastries) and at least 3 new menu items (Capuccino, Croissant, Muffin)
   const menuData = [
     { id: '1', name: 'Americano', category: 'Hot Drinks' },
     { id: '2', name: 'Latte', category: 'Hot Drinks' },
-    { id: '3', name: 'Cappuccino', category: 'Hot Drinks' }, // New Item 1
+    { id: '3', name: 'Cappuccino', category: 'Hot Drinks' }, 
     { id: '4', name: 'Cheesecake', category: 'Desserts' },
     { id: '5', name: 'Brownie', category: 'Desserts' },
-    { id: '6', name: 'Croissant', category: 'Pastries' },     // New Category + New Item 2
-    { id: '7', name: 'Muffin', category: 'Pastries' },        // New Item 3
+    { id: '6', name: 'Croissant', category: 'Pastries' },    
+    { id: '7', name: 'Muffin', category: 'Pastries' },        
   ];
 
-  // Basic interaction: Handles the button press
   const handleViewItem = (itemName) => {
     setConsoleLog(`Selected: ${itemName}`);
     console.log(`User clicked view for: ${itemName}`);
   };
 
-  // renderItem function for FlatList
   const renderMenuItem = ({ item }) => (
     <View style={styles.itemContainer}>
       <Text style={styles.categoryText}>{item.category}</Text>
       <Text style={styles.itemNameText}>{item.name}</Text>
       
-      {/* 4. Added a button below each item requirement */}
       <TouchableOpacity 
         style={styles.button} 
         onPress={() => handleViewItem(item.name)}
@@ -46,11 +39,9 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="light-content" />
       
-      {/* Phone UI Mockup Header */}
       <View style={styles.phoneWrapper}>
         <Text style={styles.appHeader}>{appTitle}</Text>
         
-        {/* 1. FlatList Implementation */}
         <FlatList
           data={menuData}
           renderItem={renderMenuItem}
@@ -59,7 +50,6 @@ export default function App() {
           contentContainerStyle={styles.listContent}
         />
 
-        {/* Simulated Console Log Area */}
         <View style={styles.consoleContainer}>
           <Text style={styles.consoleHeader}>console.log output</Text>
           <Text style={styles.consoleText}>{consoleLog}</Text>
